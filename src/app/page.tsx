@@ -4,7 +4,7 @@ import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Skills from "./sections/Skills";
 import Experience from "./sections/Experience";
-// import Projects from "./sections/Projects"; // Removed
+import Projects from "./sections/Projects";
 // import Contact from "./sections/Contact"; // Removed
 
 export default function Home() {
@@ -15,7 +15,8 @@ export default function Home() {
         <About />
         <Skills />
         <Experience />
-        {/* Projects and Contact sections are now separate pages */}
+        <Projects />
+        {/* Contact section is now a separate page */}
       </div>
     </div>
   );

@@ -4,10 +4,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ExternalLink, Calendar, MapPin, Briefcase } from 'lucide-react';
+import { ExternalLink, Calendar, MapPin, Briefcase, ChevronRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import './page.css';
+import { experienceData, detailedProjects } from '@/constants';
+import { Experience, DetailedProject } from '@/types';
 
 const ProfessionalExperiencePage = () => {
     // Animation variants
@@ -34,79 +36,6 @@ const ProfessionalExperiencePage = () => {
         }
     };
 
-    // Experience data
-    const experiences = [
-        {
-            title: "Full-Stack JavaScript Developer",
-            company: "Phaedra Solutions",
-            location: "Lahore, Pakistan",
-            period: "Mar 2024 - Present",
-            description: [
-                "Architected and developed full-stack applications using Next.js, React.js, Nest.js, PostgreSQL, and ORMs (Prisma, Sequelize)",
-                "Engineered RESTful APIs with optimized data flow patterns and comprehensive documentation",
-                "Built responsive, mobile-first UIs implementing modern design practices and state management",
-                "Contributed to React Native mobile applications with cross-platform functionality"
-            ],
-            technologies: ["Next.js", "React.js", "Nest.js", "TypeScript", "PostgreSQL", "Prisma", "React Native"]
-        },
-        {
-            title: "Next.js Developer",
-            company: "Voltonic Solution Pvt. Ltd.",
-            location: "Lahore, Pakistan",
-            period: "Aug 2023 - Jan 2024",
-            description: [
-                "Developed e-commerce platforms with Next.js and TypeScript, improving application efficiency by 30%",
-                "Integrated REST APIs and implemented secure authentication systems",
-                "Utilized Redux for state management in complex dashboards, increasing user satisfaction by 40%",
-                "Collaborated with design teams to implement pixel-perfect UI components"
-            ],
-            technologies: ["Next.js", "TypeScript", "Redux", "API Integration", "E-commerce"]
-        }
-    ];
-
-    // Projects data for professional experience page
-    const projects = [
-        {
-            id: 1,
-            title: "Restat - Business Development SaaS",
-            description: "Enterprise SaaS platform serving 90+ companies with integrated services (Stripe, Brevo) and performance optimizations that reduced API response time by 150ms.",
-            technologies: ["Nest.js", "PostgreSQL", "React.js", "Vue.js", "Stripe"],
-            image: "https://app.restat.io/static/media/logo.1a0c1d1d21b36e2579a432739ef98953.svg",
-            links: {
-                live: "https://app.restat.io",
-                chrome: "https://chromewebstore.google.com/detail/restat/piboogehnifdnfbniihlngohmpopdamo?hl=en"
-            }
-        },
-        {
-            id: 2,
-            title: "MegaTourn - Sports Tournament Platform",
-            description: "Comprehensive tournament management platform with payment processing, automated communications, and performance-optimized interfaces.",
-            technologies: ["Nest.js", "PostgreSQL", "React.js", "Stripe", "Brevo"],
-            image: "https://app.megatourn.com/assets/logo-full-white-e72aOfNi.svg",
-            links: {
-                live: "https://app.megatourn.com"
-            }
-        },
-        {
-            id: 3,
-            title: "CC Build - Mobile Application",
-            description: "Mobile app with real-time data synchronization and offline capabilities, built using React Native CLI and Firebase.",
-            technologies: ["React Native", "Firebase", "PostgreSQL", "Nest.js"],
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3I8ojSr2o6R1MQfFqwizGJh_V0W6kZqxs8Q&s",
-            links: {
-                playStore: "https://play.google.com/store/apps/details?id=com.mobilecarboncopy&hl=en"
-            }
-        },
-        {
-            id: 4,
-            title: "N8N Blog & LinkedIn Automation",
-            description: "Advanced automation system that transformed content creation process, reducing publishing time from 30 days to 3 minutes.",
-            technologies: ["N8N", "OpenAI", "React.js", "Automation"],
-            image: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/n8n-color.png",
-            links: {}
-        }
-    ];
-
     return (
         <div className="min-h-screen py-12 code-bg">
             {/* Animated tech bubbles */}
@@ -119,6 +48,7 @@ const ProfessionalExperiencePage = () => {
             <div className="fixed inset-0 z-0">
                 <div className="absolute inset-0 bg-grid-pattern opacity-5" />
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground to-transparent" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
@@ -129,7 +59,10 @@ const ProfessionalExperiencePage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h1 className="text-4xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+                    <div className="inline-block mb-4 px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                        My Professional Journey
+                    </div>
+                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary/80 via-white to-primary/80">
                         Professional Experience
                     </h1>
                     <p className="text-lg text-gray-400 max-w-2xl mx-auto">
@@ -152,19 +85,21 @@ const ProfessionalExperiencePage = () => {
                     </motion.h2>
 
                     <div className="space-y-12">
-                        {experiences.map((job, index) => (
+                        {experienceData.map((job: Experience, index: number) => (
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
                                 className="relative pl-8 border-l border-neutral-800"
                             >
-                                {/* Timeline dot */}
-                                <div className="absolute left-[-8px] top-0 h-4 w-4 rounded-full bg-primary" />
+                                <div className="absolute left-[-8px] top-0">
+                                    <div className="h-4 w-4 rounded-full bg-primary"></div>
+                                    <div className="absolute inset-0 h-4 w-4 rounded-full bg-primary/50 animate-ping"></div>
+                                </div>
 
-                                <div className="glass-panel p-6 rounded-lg">
+                                <div className="glass-panel p-6 rounded-lg border border-neutral-800 hover:border-primary/30 transition-colors duration-300">
                                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                                         <div>
-                                            <h3 className="text-xl font-bold">{job.title}</h3>
+                                            <h3 className="text-xl font-bold text-primary/90">{job.title}</h3>
                                             <div className="flex flex-wrap items-center gap-2 text-sm text-gray-400 mt-1">
                                                 <Briefcase className="h-4 w-4" />
                                                 <span>{job.company}</span>
@@ -173,24 +108,24 @@ const ProfessionalExperiencePage = () => {
                                                 <span>{job.location}</span>
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-2 mt-2 md:mt-0 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
+                                        <div className="flex items-center gap-2 mt-2 md:mt-0 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm backdrop-blur-sm">
                                             <Calendar className="h-4 w-4" />
                                             <span>{job.period}</span>
                                         </div>
                                     </div>
 
                                     <ul className="space-y-2 mb-4">
-                                        {job.description.map((item, i) => (
+                                        {job.description.map((item: string, i: number) => (
                                             <li key={i} className="flex items-start gap-2 text-gray-300">
-                                                <span className="text-primary mt-1.5">•</span>
+                                                <ChevronRight className="h-4 w-4 text-primary mt-1" />
                                                 <span>{item}</span>
                                             </li>
                                         ))}
                                     </ul>
 
                                     <div className="flex flex-wrap gap-2 mt-4">
-                                        {job.technologies.map((tech, i) => (
-                                            <Badge key={i} variant="secondary" className="tech-badge bg-background/60">
+                                        {job.technologies.map((tech: string, i: number) => (
+                                            <Badge key={i} variant="secondary" className="tech-badge bg-background/60 hover:bg-primary/20 transition-colors duration-200">
                                                 {tech}
                                             </Badge>
                                         ))}
@@ -215,8 +150,8 @@ const ProfessionalExperiencePage = () => {
                         Key Projects
                     </motion.h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {projects.map((project) => (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {detailedProjects.map((project: DetailedProject) => (
                             <motion.div
                                 key={project.id}
                                 variants={itemVariants}
@@ -239,40 +174,38 @@ const ProfessionalExperiencePage = () => {
                                     </div>
                                 </div>
 
-                                <div className="p-4">
-                                    <p className="text-gray-300 mb-4">{project.description}</p>
+                                <p className="text-gray-400 mb-4">{project.description}</p>
 
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {project.technologies.map((tech, i) => (
-                                            <Badge key={i} variant="outline" className="tech-badge text-xs">
-                                                {tech}
-                                            </Badge>
-                                        ))}
-                                    </div>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    {project.technologies.map((tech: string, i: number) => (
+                                        <Badge key={i} variant="outline" className="text-xs">
+                                            {tech}
+                                        </Badge>
+                                    ))}
+                                </div>
 
-                                    <div className="flex flex-wrap gap-3">
-                                        {project.links.live && (
+                                <div className="flex flex-wrap gap-3">
+                                    {project.links.live && (
+                                        <Button variant="outline" size="sm" asChild>
                                             <Link href={project.links.live} target="_blank" rel="noopener noreferrer">
-                                                <Button variant="outline" size="sm" className="text-xs">
-                                                    Live Demo <ExternalLink className="ml-1 h-3 w-3" />
-                                                </Button>
+                                                <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
                                             </Link>
-                                        )}
-                                        {project.links.chrome && (
+                                        </Button>
+                                    )}
+                                    {project.links.chrome && (
+                                        <Button variant="outline" size="sm" asChild>
                                             <Link href={project.links.chrome} target="_blank" rel="noopener noreferrer">
-                                                <Button variant="outline" size="sm" className="text-xs">
-                                                    Chrome Extension <ExternalLink className="ml-1 h-3 w-3" />
-                                                </Button>
+                                                <ExternalLink className="mr-2 h-4 w-4" /> Chrome Extension
                                             </Link>
-                                        )}
-                                        {project.links.playStore && (
+                                        </Button>
+                                    )}
+                                    {project.links.playStore && (
+                                        <Button variant="outline" size="sm" asChild>
                                             <Link href={project.links.playStore} target="_blank" rel="noopener noreferrer">
-                                                <Button variant="outline" size="sm" className="text-xs">
-                                                    Google Play <ExternalLink className="ml-1 h-3 w-3" />
-                                                </Button>
+                                                <ExternalLink className="mr-2 h-4 w-4" /> Google Play
                                             </Link>
-                                        )}
-                                    </div>
+                                        </Button>
+                                    )}
                                 </div>
                             </motion.div>
                         ))}
@@ -281,46 +214,32 @@ const ProfessionalExperiencePage = () => {
 
                 {/* Call to action */}
                 <motion.div
-                    className="text-center mt-16"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8, duration: 0.5 }}
+                    variants={itemVariants}
+                    className="text-center"
                 >
-                    <p className="text-gray-400 mb-4">Want to know more about my professional background?</p>
-                    <Link href="/resume">
-                        <Button variant="default" size="lg" className="bg-primary hover:bg-primary/80">
-                            View My Full Resume
-                        </Button>
-                    </Link>
+                    <div className="glass-panel rounded-lg p-8 border border-neutral-800">
+                        <h3 className="text-2xl font-bold mb-2">Interested in working together?</h3>
+                        <p className="text-gray-400 mb-6">Check out my full portfolio or reach out directly.</p>
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <Button asChild>
+                                <Link href="/projects">
+                                    View All Projects
+                                </Link>
+                            </Button>
+                            <Button variant="outline" asChild>
+                                <Link href="/contact">
+                                    Contact Me
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
                 </motion.div>
-            </div>
+            </div >
 
             {/* Tech pattern floating decorations */}
-            <div className="fixed top-1/4 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl z-0"></div>
+            <div className="fixed top-1/4 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl z-0" ></div >
             <div className="fixed bottom-1/4 left-10 w-80 h-80 bg-secondary/5 rounded-full blur-3xl z-0"></div>
-
-            <style jsx>{`
-        .glass-panel {
-          background: rgba(15, 15, 15, 0.6);
-          backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s ease;
-        }
-        
-        .glass-panel:hover {
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-          transform: translateY(-2px);
-        }
-        
-        .bg-grid-pattern {
-          background-image: 
-            linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-      `}</style>
-        </div>
+        </div >
     );
 };
 
