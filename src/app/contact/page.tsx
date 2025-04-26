@@ -6,9 +6,18 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import Link from 'next/link';
-import { Linkedin, Mail, Phone, Github } from 'lucide-react'; // Icons
+import { Linkedin, Mail, Phone, Github, Info } from 'lucide-react'; // Icons - Added Info icon
 import { motion } from 'framer-motion'; // Added for animation consistency
 import Image from 'next/image';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter,
+    DialogClose, // Import DialogClose
+} from "@/components/ui/dialog"; // Import Dialog components
 
 // Renamed component to ContactPage for clarity
 const ContactPage: React.FC = () => {
@@ -17,8 +26,10 @@ const ContactPage: React.FC = () => {
         email: '',
         message: ''
     });
+    const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        // setIsModalOpen(false); // No need to close modal on input change
         setFormState({
             ...formState,
             [e.target.id]: e.target.value
@@ -27,9 +38,9 @@ const ContactPage: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(formState);
-        alert('Thank you for your message. We will get back to you soon!');
-        setFormState({ name: '', email: '', message: '' });
+        setIsModalOpen(true); // Open the modal
+        // Optional: Clear form 
+        // setFormState({ name: '', email: '', message: '' }); 
     };
 
     return (
@@ -130,6 +141,32 @@ const ContactPage: React.FC = () => {
                     </div>
                 </motion.div>
             </div>
+
+            {/* Modal Implementation */}
+            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                <DialogContent className="sm:max-w-[425px] text-white">
+                    <DialogHeader>
+                        <DialogTitle className="flex items-center gap-2">
+                            <Info className="h-5 w-5 text-blue-400" />
+                            <span>Heads Up!</span>
+                        </DialogTitle>
+                        <DialogDescription className="text-neutral-400 pt-2">
+                            The mail sending functionality is currently under development. Thanks for your patience!
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter className="mt-4">
+                        <DialogClose asChild>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                className="bg-neutral-800 border-neutral-700 hover:bg-neutral-700 text-neutral-300 hover:text-white"
+                            >
+                                Got it
+                            </Button>
+                        </DialogClose>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 };
