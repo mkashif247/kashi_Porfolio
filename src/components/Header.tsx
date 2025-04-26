@@ -28,9 +28,7 @@ const Header: React.FC = () => {
                             Contact
                         </Link>
                         <Link
-                            href="/resume.pdf" // Assuming resume will be in public folder
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="/resume"
                             className="transition-colors hover:text-foreground/80 text-foreground/60"
                         >
                             Resume

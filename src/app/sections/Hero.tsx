@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
                         View Projects
                     </Button>
                 </Link>
-                <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                <Link href="/resume">
                     <Button variant="outline" size="lg">
                         View Resume
                     </Button>
