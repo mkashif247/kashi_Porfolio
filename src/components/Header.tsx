@@ -31,12 +31,12 @@ const Header: React.FC = () => {
                     >
                         PROJECTS
                     </Link>
-                    <Link
+                    {/* <Link
                         href="/blog"
                         className="transition-colors hover:text-white text-neutral-400 tracking-wide"
                     >
                         BLOG
-                    </Link>
+                    </Link> */}
                     <Link
                         href="/contact"
                         className="transition-colors hover:text-white text-neutral-400 tracking-wide"
