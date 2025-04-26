@@ -5,42 +5,47 @@ import { ModeToggle } from '@/components/ThemeToggle';
 
 const Header: React.FC = () => {
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-14 items-center">
-                <div className="mr-4 hidden md:flex">
-                    <Link href="/" className="mr-6 flex items-center space-x-2">
-                        {/* Add Logo or Name here */}
-                        <span className="hidden font-bold sm:inline-block">
-                            Muhammad Kashif
-                        </span>
+        <header className="sticky top-0 z-50 w-full border-b border-neutral-800 bg-black/50 backdrop-blur-xl supports-[backdrop-filter]:bg-black/30">
+            <div className="container mx-auto flex h-16 items-center justify-between px-4">
+                <Link href="/" className="flex items-center space-x-2">
+                    <span className="font-mono text-lg font-bold tracking-tight text-white">
+                        Muhammad Kashif
+                    </span>
+                </Link>
+                <nav className="hidden items-center space-x-8 text-sm font-medium md:flex">
+                    <Link
+                        href="/"
+                        className="transition-colors hover:text-white text-neutral-400 tracking-wide"
+                    >
+                        HOME
                     </Link>
-                    <nav className="flex items-center space-x-6 text-sm font-medium">
-                        <Link
-                            href="/projects"
-                            className="transition-colors hover:text-foreground/80 text-foreground/60"
-                        >
-                            Projects
-                        </Link>
-                        <Link
-                            href="/contact"
-                            className="transition-colors hover:text-foreground/80 text-foreground/60"
-                        >
-                            Contact
-                        </Link>
-                        <Link
-                            href="/resume"
-                            className="transition-colors hover:text-foreground/80 text-foreground/60"
-                        >
-                            Resume
-                        </Link>
-                    </nav>
-                </div>
-                {/* Add Mobile Menu Button if needed */}
-                <div className="flex flex-1 items-center justify-end space-x-4">
-                    <nav className="flex items-center space-x-1">
-                        {/* Add other buttons like GitHub link here */}
-                        <ModeToggle />
-                    </nav>
+                    <Link
+                        href="/resume"
+                        className="transition-colors hover:text-white text-neutral-400 tracking-wide"
+                    >
+                        PROFESSIONAL EXPERIENCE
+                    </Link>
+                    <Link
+                        href="/projects"
+                        className="transition-colors hover:text-white text-neutral-400 tracking-wide"
+                    >
+                        PROJECTS
+                    </Link>
+                    <Link
+                        href="/blog"
+                        className="transition-colors hover:text-white text-neutral-400 tracking-wide"
+                    >
+                        BLOG
+                    </Link>
+                    <Link
+                        href="/contact"
+                        className="transition-colors hover:text-white text-neutral-400 tracking-wide"
+                    >
+                        CONTACT ME
+                    </Link>
+                </nav>
+                <div className="flex items-center space-x-4">
+                    <ModeToggle />
                 </div>
             </div>
         </header>

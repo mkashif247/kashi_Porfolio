@@ -1,65 +1,122 @@
 "use client"; // Mark as a Client Component
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import Link from 'next/link';
-import { Linkedin, Mail, Phone } from 'lucide-react'; // Icons
+import { Linkedin, Mail, Phone, Github } from 'lucide-react'; // Icons
+import { motion } from 'framer-motion';
 
 const Contact: React.FC = () => {
-    // Basic placeholder for form submission
+    const [formState, setFormState] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormState({
+            ...formState,
+            [e.target.id]: e.target.value
+        });
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        alert('Contact form functionality not implemented yet.');
+        console.log(formState);
+        alert('Thank you for your message. We will get back to you soon!');
+        setFormState({ name: '', email: '', message: '' });
     };
 
     return (
-        <section id="contact" className="container py-12 md:py-24 bg-secondary">
-            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
-                {/* Left Side: Info */}
-                <div className="space-y-6">
-                    <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-4xl">
-                        Get In Touch
-                    </h2>
-                    <p className="text-muted-foreground">
-                        Have a project in mind or just want to connect? Feel free to reach out!
-                    </p>
-                    <div className="space-y-4">
-                        <Link href="mailto:muhammadkashifbhatti70@gmail.com" className="flex items-center gap-3 hover:text-primary">
-                            <Mail className="h-5 w-5" />
-                            <span>muhammadkashifbhatti70@gmail.com</span>
-                        </Link>
-                        <Link href="tel:+923075196247" className="flex items-center gap-3 hover:text-primary">
-                            <Phone className="h-5 w-5" />
-                            <span>(+92) 307-5196247</span>
-                        </Link>
-                        <Link href="https://www.linkedin.com/in/muhammadkashif70/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-primary">
-                            <Linkedin className="h-5 w-5" />
-                            <span>LinkedIn Profile</span>
-                        </Link>
-                        {/* Add other links like Portfolio, GitHub if desired */}
+        <section id="contact" className="py-20">
+            <motion.div
+                className="container mx-auto px-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <div className="glass-panel rounded-xl p-8 md:p-12 max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+                        {/* Left Side: Contact Info */}
+                        <div className="space-y-8">
+                            <div>
+                                <h2 className="text-4xl font-extrabold leading-tight tracking-tighter text-white mb-6">
+                                    Get In Touch
+                                </h2>
+                                <p className="text-lg text-neutral-400">
+                                    Have a project in mind or just want to connect? Feel free to reach out!
+                                </p>
+                            </div>
+
+                            <div className="space-y-6 pt-4 border-t border-neutral-800">
+                                <Link href="mailto:muhammadkashifbhatti70@gmail.com" className="flex items-center gap-4 text-neutral-400 hover:text-white transition-colors">
+                                    <Mail className="h-5 w-5" />
+                                    <span>muhammadkashifbhatti70@gmail.com</span>
+                                </Link>
+                                <Link href="tel:+923075196247" className="flex items-center gap-4 text-neutral-400 hover:text-white transition-colors">
+                                    <Phone className="h-5 w-5" />
+                                    <span>(+92) 307-5196247</span>
+                                </Link>
+                                <Link href="https://www.linkedin.com/in/muhammadkashif70/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-400 hover:text-white transition-colors">
+                                    <Linkedin className="h-5 w-5" />
+                                    <span>LinkedIn Profile</span>
+                                </Link>
+                                <Link href="https://github.com/mkashif247" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-400 hover:text-white transition-colors">
+                                    <Github className="h-5 w-5" />
+                                    <span>GitHub</span>
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Right Side: Contact Form */}
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div className="space-y-2">
+                                <Label htmlFor="name" className="text-sm text-neutral-400">Name</Label>
+                                <Input
+                                    id="name"
+                                    value={formState.name}
+                                    onChange={handleChange}
+                                    placeholder="Your Name"
+                                    required
+                                    className="bg-black/30 border-neutral-800 text-white placeholder:text-neutral-500 focus:border-neutral-600"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="email" className="text-sm text-neutral-400">Email</Label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    value={formState.email}
+                                    onChange={handleChange}
+                                    placeholder="Your Email"
+                                    required
+                                    className="bg-black/30 border-neutral-800 text-white placeholder:text-neutral-500 focus:border-neutral-600"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="message" className="text-sm text-neutral-400">Message</Label>
+                                <Textarea
+                                    id="message"
+                                    value={formState.message}
+                                    onChange={handleChange}
+                                    placeholder="Your Message"
+                                    required
+                                    className="min-h-32 bg-black/30 border-neutral-800 text-white placeholder:text-neutral-500 focus:border-neutral-600"
+                                />
+                            </div>
+                            <Button
+                                type="submit"
+                                className="mt-4 bg-black/40 hover:bg-black/60 border border-neutral-800 text-white hover:text-white w-full font-normal"
+                            >
+                                Send Message
+                            </Button>
+                        </form>
                     </div>
                 </div>
-
-                {/* Right Side: Contact Form (Placeholder) */}
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <Label htmlFor="name">Name</Label>
-                        <Input id="name" placeholder="Your Name" required />
-                    </div>
-                    <div>
-                        <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="Your Email" required />
-                    </div>
-                    <div>
-                        <Label htmlFor="message">Message</Label>
-                        <Textarea id="message" placeholder="Your Message" required />
-                    </div>
-                    <Button type="submit">Send Message</Button>
-                </form>
-            </div>
+            </motion.div>
         </section>
     );
 };

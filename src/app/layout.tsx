@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Kashif - Full-Stack Developer",
-  description: "Personal portfolio of Muhammad Kashif, a Full-Stack JavaScript Developer specializing in Next.js, React, Nest.js, and React Native.",
+  title: "Muhammad Kashif - Creative Web Developer",
+  description: "Personal portfolio showcasing scalable web solutions focused on performance and security.",
 };
 
 export default function RootLayout({
@@ -27,24 +27,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-black font-sans antialiased",
           geistSans.variable,
           geistMono.variable
         )}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <Header />
-          <div className="relative flex min-h-screen flex-col">
-            <div className="flex-1">{children}</div>
-          </div>
+          <main className="flex flex-col min-h-[calc(100vh-64px)]">
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
       </body>

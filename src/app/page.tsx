@@ -9,12 +9,14 @@ import Experience from "./sections/Experience";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between">
+    <div className="flex w-full flex-col">
       <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      {/* Projects and Contact sections are now separate pages */}
-    </main>
+      <div className="container mx-auto px-4">
+        <About />
+        <Skills />
+        <Experience />
+        {/* Projects and Contact sections are now separate pages */}
+      </div>
+    </div>
   );
 }

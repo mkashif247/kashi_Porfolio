@@ -3,42 +3,72 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowDown } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const Hero: React.FC = () => {
     return (
         <motion.section
-            className="container grid items-center gap-6 pb-8 pt-6 md:py-10 min-h-[calc(100vh-var(--header-height))] relative"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            className="relative min-h-[calc(100vh-var(--header-height))] w-full overflow-hidden bg-black"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
         >
-            <div className="flex max-w-[980px] flex-col items-start gap-2">
-                <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
-                    Hi, I&apos;m Muhammad Kashif
-                </h1>
-                <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-                    A passionate Full-Stack JavaScript Developer specializing in building scalable web & mobile applications and AI solutions with Next.js, React, Nest.js, and React Native.
-                </p>
+            {/* Background tech pattern positioned to the right */}
+            <div className="absolute right-0 top-0 h-full w-1/2 z-0 opacity-70">
+                <Image
+                    src="/hero.png"
+                    alt="Technology Pattern"
+                    fill
+                    className="object-cover object-left"
+                    priority
+                />
             </div>
-            <div className="flex gap-4">
-                <Link href="#projects">
-                    <Button variant="default" size="lg">
-                        View Projects
-                    </Button>
-                </Link>
-                <Link href="/resume">
-                    <Button variant="outline" size="lg">
-                        View Resume
-                    </Button>
-                </Link>
-            </div>
-            {/* Optional: Add a scroll down indicator */}
-            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-                <Link href="#about">
-                    <ArrowDown className="h-6 w-6 animate-bounce text-muted-foreground" />
-                </Link>
+
+            <div className="container relative z-10 mx-auto px-4 flex flex-col justify-center h-full">
+                <div className="max-w-3xl">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.8 }}
+                    >
+                        <h1 className="text-[5rem] sm:text-[6rem] md:text-[8rem] font-extrabold leading-none tracking-tighter text-white">
+                            CREATIVE
+                            <br />
+                            <span className="text-neutral-600">DEVELOPER</span>
+                        </h1>
+                    </motion.div>
+
+                    <motion.div
+                        className="mt-8 border-t border-neutral-800 pt-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.8 }}
+                    >
+                        <div className="flex flex-col space-y-6">
+                            <p className="text-lg text-neutral-400">
+                                Chris Allow / Web Developer
+                            </p>
+                            <div className="border-b border-neutral-800 pb-6">
+                                <p className="text-xl font-light text-neutral-400">
+                                    {"// SCALABLE WEB SOLUTIONS."}
+                                </p>
+                            </div>
+                            <p className="max-w-2xl text-lg text-neutral-400">
+                                Full-stack developer and hacker driven by a passion for building
+                                efficient, secure applications. Expertise in web development, with a
+                                focus on performance and security, pushing boundaries in code.
+                            </p>
+                            <div className="pt-4">
+                                <Link href="#projects">
+                                    <Button variant="outline" size="lg" className="border-neutral-700 bg-transparent text-white hover:bg-neutral-900">
+                                        EXPLORE MY WORK <span className="ml-2">↓</span>
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
         </motion.section>
     );
