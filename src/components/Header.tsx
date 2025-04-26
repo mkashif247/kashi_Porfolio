@@ -23,6 +23,12 @@ const Header: React.FC = () => {
                         href="/resume"
                         className="transition-colors hover:text-white text-neutral-400 tracking-wide"
                     >
+                        RESUME
+                    </Link>
+                    <Link
+                        href="/professional-experience"
+                        className="transition-colors hover:text-white text-neutral-400 tracking-wide"
+                    >
                         PROFESSIONAL EXPERIENCE
                     </Link>
                     <Link
