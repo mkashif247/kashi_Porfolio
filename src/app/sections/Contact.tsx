@@ -6,8 +6,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import Link from 'next/link';
-import { Linkedin, Mail, Phone, Github } from 'lucide-react'; // Icons
+import { Linkedin, Mail, Phone, Github, Loader2, CheckCircle, AlertTriangle } from 'lucide-react'; // Icons
 import { motion } from 'framer-motion';
+import { cn } from "@/lib/utils"; // Assuming you have a utility for class names
 
 const Contact: React.FC = () => {
     const [formState, setFormState] = useState({
@@ -15,19 +16,47 @@ const Contact: React.FC = () => {
         email: '',
         message: ''
     });
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [feedbackMessage, setFeedbackMessage] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setStatus('idle'); // Reset status on change
+        setFeedbackMessage('');
         setFormState({
             ...formState,
             [e.target.id]: e.target.value
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(formState);
-        alert('Thank you for your message. We will get back to you soon!');
-        setFormState({ name: '', email: '', message: '' });
+        setStatus('loading');
+        setFeedbackMessage('');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formState),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setStatus('success');
+                setFeedbackMessage(result.message || 'Message sent successfully!');
+                setFormState({ name: '', email: '', message: '' }); // Clear form
+            } else {
+                setStatus('error');
+                setFeedbackMessage(result.error || 'Failed to send message. Please try again.');
+            }
+        } catch (error) {
+            console.error("Submission error:", error);
+            setStatus('error');
+            setFeedbackMessage('An unexpected error occurred. Please try again.');
+        }
     };
 
     return (
@@ -81,7 +110,8 @@ const Contact: React.FC = () => {
                                     onChange={handleChange}
                                     placeholder="Your Name"
                                     required
-                                    className="bg-black/30 border-neutral-800 text-white placeholder:text-neutral-500 focus:border-neutral-600"
+                                    disabled={status === 'loading'}
+                                    className="bg-black/30 border-neutral-800 text-white placeholder:text-neutral-500 focus:border-neutral-600 disabled:opacity-50"
                                 />
                             </div>
                             <div className="space-y-2">
@@ -93,7 +123,8 @@ const Contact: React.FC = () => {
                                     onChange={handleChange}
                                     placeholder="Your Email"
                                     required
-                                    className="bg-black/30 border-neutral-800 text-white placeholder:text-neutral-500 focus:border-neutral-600"
+                                    disabled={status === 'loading'}
+                                    className="bg-black/30 border-neutral-800 text-white placeholder:text-neutral-500 focus:border-neutral-600 disabled:opacity-50"
                                 />
                             </div>
                             <div className="space-y-2">
@@ -104,15 +135,29 @@ const Contact: React.FC = () => {
                                     onChange={handleChange}
                                     placeholder="Your Message"
                                     required
-                                    className="min-h-32 bg-black/30 border-neutral-800 text-white placeholder:text-neutral-500 focus:border-neutral-600"
+                                    disabled={status === 'loading'}
+                                    className="min-h-32 bg-black/30 border-neutral-800 text-white placeholder:text-neutral-500 focus:border-neutral-600 disabled:opacity-50"
                                 />
                             </div>
                             <Button
                                 type="submit"
-                                className="mt-4 bg-black/40 hover:bg-black/60 border border-neutral-800 text-white hover:text-white w-full font-normal"
+                                disabled={status === 'loading'}
+                                className="mt-4 bg-black/40 hover:bg-black/60 border border-neutral-800 text-white hover:text-white w-full font-normal disabled:opacity-50"
                             >
-                                Send Message
+                                {status === 'loading' && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                {status === 'loading' ? 'Sending...' : 'Send Message'}
                             </Button>
+                            {feedbackMessage && (
+                                <div className={cn(
+                                    "mt-4 p-3 rounded-md text-sm flex items-center gap-2",
+                                    status === 'success' && "bg-green-900/30 text-green-300 border border-green-700",
+                                    status === 'error' && "bg-red-900/30 text-red-300 border border-red-700",
+                                )}>
+                                    {status === 'success' && <CheckCircle className="h-4 w-4" />}
+                                    {status === 'error' && <AlertTriangle className="h-4 w-4" />}
+                                    {feedbackMessage}
+                                </div>
+                            )}
                         </form>
                     </div>
                 </div>

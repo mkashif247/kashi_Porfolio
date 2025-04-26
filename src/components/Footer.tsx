@@ -11,11 +11,8 @@ const Footer: React.FC = () => {
                     </p>
                 </div>
                 <div className="flex items-center gap-6">
-                    <Link href="/privacy" className="text-sm text-neutral-400 hover:text-white">
-                        Privacy
-                    </Link>
-                    <Link href="/terms" className="text-sm text-neutral-400 hover:text-white">
-                        Terms
+                    <Link href="mailto:mkashif247@gmail.com" className="text-sm text-neutral-400 hover:text-white">
+                        Email
                     </Link>
                     <Link href="https://github.com/mkashif247" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-white">
                         GitHub
