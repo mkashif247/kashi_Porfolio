@@ -71,7 +71,7 @@ const ProfessionalExperiencePage = () => {
             title: "Restat - Business Development SaaS",
             description: "Enterprise SaaS platform serving 90+ companies with integrated services (Stripe, Brevo) and performance optimizations that reduced API response time by 150ms.",
             technologies: ["Nest.js", "PostgreSQL", "React.js", "Vue.js", "Stripe"],
-            image: "/projects/restat.png",
+            image: "https://app.restat.io/static/media/logo.1a0c1d1d21b36e2579a432739ef98953.svg",
             links: {
                 live: "https://app.restat.io",
                 chrome: "https://chromewebstore.google.com/detail/restat/piboogehnifdnfbniihlngohmpopdamo?hl=en"
@@ -82,7 +82,7 @@ const ProfessionalExperiencePage = () => {
             title: "MegaTourn - Sports Tournament Platform",
             description: "Comprehensive tournament management platform with payment processing, automated communications, and performance-optimized interfaces.",
             technologies: ["Nest.js", "PostgreSQL", "React.js", "Stripe", "Brevo"],
-            image: "/projects/megatourn.png",
+            image: "https://app.megatourn.com/assets/logo-full-white-e72aOfNi.svg",
             links: {
                 live: "https://app.megatourn.com"
             }
@@ -92,7 +92,7 @@ const ProfessionalExperiencePage = () => {
             title: "CC Build - Mobile Application",
             description: "Mobile app with real-time data synchronization and offline capabilities, built using React Native CLI and Firebase.",
             technologies: ["React Native", "Firebase", "PostgreSQL", "Nest.js"],
-            image: "/projects/ccbuild.png",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3I8ojSr2o6R1MQfFqwizGJh_V0W6kZqxs8Q&s",
             links: {
                 playStore: "https://play.google.com/store/apps/details?id=com.mobilecarboncopy&hl=en"
             }
@@ -102,7 +102,7 @@ const ProfessionalExperiencePage = () => {
             title: "N8N Blog & LinkedIn Automation",
             description: "Advanced automation system that transformed content creation process, reducing publishing time from 30 days to 3 minutes.",
             technologies: ["N8N", "OpenAI", "React.js", "Automation"],
-            image: "/projects/automation.png",
+            image: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/n8n-color.png",
             links: {}
         }
     ];
