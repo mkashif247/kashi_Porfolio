@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { aboutText } from '@/constants';
 
 const About: React.FC = () => {
     return (
@@ -10,7 +11,7 @@ const About: React.FC = () => {
                     About Me
                 </h2>
                 <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-                    I am a Full-Stack JavaScript Developer with almost 2 years of experience building scalable web and mobile applications using Next.js, React.js, Nest.js, and React Native. My expertise spans developing responsive UIs, RESTful APIs, and integrating third-party services like Stripe and Firebase. I&apos;m passionate about optimizing performance and creating user-centric solutions that drive business growth. As a Computer Science graduate from COMSATS University, I combine technical knowledge with practical skills to deliver high-quality applications.
+                    {aboutText}
                 </p>
             </div>
         </section>

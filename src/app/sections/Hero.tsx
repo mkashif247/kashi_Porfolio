@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { personalInfo } from '@/constants';
 
 const Hero: React.FC = () => {
     return (
@@ -17,7 +18,7 @@ const Hero: React.FC = () => {
             {/* Background tech pattern positioned to the right */}
             <div className="absolute right-0 top-0 h-full w-1/2 z-0 opacity-70">
                 <Image
-                    src="/hero.png"
+                    src={personalInfo.heroImage}
                     alt="Technology Pattern"
                     fill
                     className="object-cover object-left"
@@ -47,17 +48,15 @@ const Hero: React.FC = () => {
                     >
                         <div className="flex flex-col space-y-6">
                             <p className="text-lg text-neutral-400">
-                                Muhammad Kashif / Full-Stack JavaScript Developer
+                                {personalInfo.name} / {personalInfo.title}
                             </p>
                             <div className="border-b border-neutral-800 pb-6">
                                 <p className="text-xl font-light text-neutral-400">
-                                    {"// SCALABLE WEB & MOBILE APPLICATIONS."}
+                                    {personalInfo.subtitle}
                                 </p>
                             </div>
                             <p className="max-w-2xl text-lg text-neutral-400">
-                                Full-stack JavaScript developer with expertise in Next.js, React.js, Nest.js, and React Native.
-                                Focused on building high-performance applications with clean architectures and seamless user experiences
-                                that drive business growth.
+                                {personalInfo.description}
                             </p>
                             <div className="pt-4">
                                 <Link href="#projects">

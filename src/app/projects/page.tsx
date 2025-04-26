@@ -13,47 +13,8 @@ import { Badge } from "@/components/ui/badge"
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-
-type Project = {
-    title: string;
-    description: string;
-    tags: string[];
-    liveUrl?: string;
-    chromeUrl?: string;
-    playStoreUrl?: string;
-    imagePath?: string;
-}
-
-const projectsData: Project[] = [
-    {
-        title: "Restat",
-        description: "Built a SaaS platform with Nest.js, PostgreSQL, React.js, and Vue.js (Chrome extension), serving 90+ companies. Integrated Stripe, Brevo, cron jobs, ClickUp, HubSpot, Upwork. Optimized performance by 25% (150ms API reduction).",
-        tags: ["SaaS", "Nest.js", "PostgreSQL", "React.js", "Vue.js", "Stripe", "Integrations"],
-        liveUrl: "https://app.restat.io",
-        chromeUrl: "https://chromewebstore.google.com/detail/restat/piboogehnifdnfbniihlngohmpopdamo?hl=en",
-        imagePath: "/images/projects/restat.jpg", // You'll need to add these images to your public folder
-    },
-    {
-        title: "MegaTourn",
-        description: "Developed a sports tournament platform with Nest.js, PostgreSQL, and React.js. Integrated Stripe, Brevo, and cron jobs. Reduced load times by 20% with efficient coding practices. Built super admin panel and added social media integration.",
-        tags: ["Nest.js", "PostgreSQL", "React.js", "Stripe", "Sports"],
-        liveUrl: "https://app.megatourn.com",
-        imagePath: "/images/projects/megatourn.jpg",
-    },
-    {
-        title: "CC Build",
-        description: "Built a React Native CLI mobile app with PostgreSQL, Firebase, and Nest.js backend for real-time data synchronization.",
-        tags: ["React Native", "Mobile App", "PostgreSQL", "Firebase", "Nest.js"],
-        playStoreUrl: "https://play.google.com/store/apps/details?id=com.mobilecarboncopy&hl=en",
-        imagePath: "/images/projects/ccbuild.jpg",
-    },
-    {
-        title: "N8N Blog & LinkedIn Automation",
-        description: "AI agent which Automated blog and LinkedIn content creation using OpenAI LLM, N8N and React for SEO-optimized text and images. Built a responsive React.js frontend, enhancing content management efficiency. Reduced publishing time from 30 days to 3 minutes.",
-        tags: ["AI", "Automation", "N8N", "OpenAI", "React.js", "SEO"],
-        imagePath: "/images/projects/n8n.jpg",
-    },
-];
+import { Project } from '@/types';
+import { projectsData } from '@/constants';
 
 interface ProjectCardProps {
     project: Project;

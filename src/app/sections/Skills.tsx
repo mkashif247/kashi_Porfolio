@@ -2,15 +2,19 @@
 
 import React from 'react';
 import { Badge } from "@/components/ui/badge"
-
-const skillsData = {
-    Frontend: ["React.js", "Next.js", "TypeScript", "JavaScript", "Vue.js"],
-    Backend: ["Nest.js", "Node.js", "Express.js", "RESTful APIs", "MongoDB", "MySQL", "PostgreSQL"],
-    Mobile: ["React Native"],
-    Tools: ["Git", "GitHub", "Postman", "Swagger", "Docker", "Firebase", "N8N"],
-};
+import { skillsData, SkillCategory } from '@/constants';
 
 const Skills: React.FC = () => {
+    // Get category names with proper capitalization
+    const categories: Record<string, SkillCategory> = {
+        'Frontend': 'frontend',
+        'Backend': 'backend',
+        'Database': 'database',
+        'Mobile': 'mobile',
+        'DevOps': 'devops',
+        'Tools': 'tools'
+    };
+
     return (
         <section id="skills" className="container py-12 md:py-24">
             <div className="mx-auto flex max-w-4xl flex-col items-center space-y-6">
@@ -18,13 +22,13 @@ const Skills: React.FC = () => {
                     Technical Skills
                 </h2>
                 <div className="w-full space-y-4">
-                    {Object.entries(skillsData).map(([category, skills]) => (
-                        <div key={category} className="rounded-lg border p-4">
-                            <h3 className="mb-2 text-lg font-semibold">{category}</h3>
+                    {Object.entries(categories).map(([displayName, categoryKey]) => (
+                        <div key={categoryKey} className="rounded-lg border p-4">
+                            <h3 className="mb-2 text-lg font-semibold">{displayName}</h3>
                             <div className="flex flex-wrap gap-2">
-                                {skills.map((skill) => (
-                                    <Badge key={skill} variant="secondary">
-                                        {skill}
+                                {skillsData[categoryKey].map((skill) => (
+                                    <Badge key={skill.name} variant="secondary">
+                                        {skill.name}
                                     </Badge>
                                 ))}
                             </div>

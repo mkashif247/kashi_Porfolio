@@ -6,25 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-
-// Featured projects for homepage (less details than full projects page)
-const featuredProjects = [
-    {
-        title: "Restat",
-        description: "SaaS platform with Nest.js, PostgreSQL, React.js, and Vue.js serving 90+ companies.",
-        tags: ["SaaS", "Nest.js", "React.js"],
-    },
-    {
-        title: "MegaTourn",
-        description: "Sports tournament platform with Nest.js, PostgreSQL, and React.js.",
-        tags: ["Nest.js", "React.js", "Sports"],
-    },
-    {
-        title: "CC Build",
-        description: "React Native mobile app with PostgreSQL, Firebase, and Nest.js backend.",
-        tags: ["React Native", "Firebase"],
-    },
-];
+import { featuredProjects } from '@/constants';
 
 const Projects: React.FC = () => {
     return (
