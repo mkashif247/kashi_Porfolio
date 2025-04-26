@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
             <div className="container mx-auto flex flex-col items-center justify-between gap-6 py-8 px-4 md:h-24 md:flex-row md:py-0">
                 <div className="flex items-center justify-center md:justify-start">
                     <p className="text-sm text-neutral-400">
-                        © {new Date().getFullYear()} OSAMI.IO — All Rights Reserved.
+                        © {new Date().getFullYear()} Muhammad Kashif — All Rights Reserved.
                     </p>
                 </div>
                 <div className="flex items-center gap-6">
@@ -17,10 +17,10 @@ const Footer: React.FC = () => {
                     <Link href="/terms" className="text-sm text-neutral-400 hover:text-white">
                         Terms
                     </Link>
-                    <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-white">
+                    <Link href="https://github.com/mkashif247" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-white">
                         GitHub
                     </Link>
-                    <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-white">
+                    <Link href="https://www.linkedin.com/in/muhammadkashif70/" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-white">
                         LinkedIn
                     </Link>
                 </div>

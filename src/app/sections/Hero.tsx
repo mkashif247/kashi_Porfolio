@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
                         transition={{ delay: 0.2, duration: 0.8 }}
                     >
                         <h1 className="text-[5rem] sm:text-[6rem] md:text-[8rem] font-extrabold leading-none tracking-tighter text-white">
-                            CREATIVE
+                            FULL-STACK
                             <br />
                             <span className="text-neutral-600">DEVELOPER</span>
                         </h1>
@@ -47,17 +47,17 @@ const Hero: React.FC = () => {
                     >
                         <div className="flex flex-col space-y-6">
                             <p className="text-lg text-neutral-400">
-                                Chris Allow / Web Developer
+                                Muhammad Kashif / Full-Stack JavaScript Developer
                             </p>
                             <div className="border-b border-neutral-800 pb-6">
                                 <p className="text-xl font-light text-neutral-400">
-                                    {"// SCALABLE WEB SOLUTIONS."}
+                                    {"// SCALABLE WEB & MOBILE APPLICATIONS."}
                                 </p>
                             </div>
                             <p className="max-w-2xl text-lg text-neutral-400">
-                                Full-stack developer and hacker driven by a passion for building
-                                efficient, secure applications. Expertise in web development, with a
-                                focus on performance and security, pushing boundaries in code.
+                                Full-stack JavaScript developer with expertise in Next.js, React.js, Nest.js, and React Native.
+                                Focused on building high-performance applications with clean architectures and seamless user experiences
+                                that drive business growth.
                             </p>
                             <div className="pt-4">
                                 <Link href="#projects">
