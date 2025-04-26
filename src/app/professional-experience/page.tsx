@@ -4,12 +4,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ExternalLink, Calendar, MapPin, Briefcase, ChevronRight } from 'lucide-react';
+import { ExternalLink, Calendar, MapPin, Briefcase } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import './page.css';
-import { experienceData, detailedProjects } from '@/constants';
-import { Experience, DetailedProject } from '@/types';
+import { experienceData, allProjects } from '@/constants';
+import { Experience, Project } from '@/types';
 
 const ProfessionalExperiencePage = () => {
     // Animation variants
@@ -48,7 +48,6 @@ const ProfessionalExperiencePage = () => {
             <div className="fixed inset-0 z-0">
                 <div className="absolute inset-0 bg-grid-pattern opacity-5" />
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground to-transparent" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
@@ -59,10 +58,7 @@ const ProfessionalExperiencePage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div className="inline-block mb-4 px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        My Professional Journey
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary/80 via-white to-primary/80">
+                    <h1 className="text-4xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
                         Professional Experience
                     </h1>
                     <p className="text-lg text-gray-400 max-w-2xl mx-auto">
@@ -91,15 +87,12 @@ const ProfessionalExperiencePage = () => {
                                 variants={itemVariants}
                                 className="relative pl-8 border-l border-neutral-800"
                             >
-                                <div className="absolute left-[-8px] top-0">
-                                    <div className="h-4 w-4 rounded-full bg-primary"></div>
-                                    <div className="absolute inset-0 h-4 w-4 rounded-full bg-primary/50 animate-ping"></div>
-                                </div>
+                                <div className="absolute left-[-8px] top-0 h-4 w-4 rounded-full bg-primary" />
 
-                                <div className="glass-panel p-6 rounded-lg border border-neutral-800 hover:border-primary/30 transition-colors duration-300">
+                                <div className="glass-panel p-6 rounded-lg">
                                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                                         <div>
-                                            <h3 className="text-xl font-bold text-primary/90">{job.title}</h3>
+                                            <h3 className="text-xl font-bold">{job.title}</h3>
                                             <div className="flex flex-wrap items-center gap-2 text-sm text-gray-400 mt-1">
                                                 <Briefcase className="h-4 w-4" />
                                                 <span>{job.company}</span>
@@ -108,7 +101,7 @@ const ProfessionalExperiencePage = () => {
                                                 <span>{job.location}</span>
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-2 mt-2 md:mt-0 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm backdrop-blur-sm">
+                                        <div className="flex items-center gap-2 mt-2 md:mt-0 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
                                             <Calendar className="h-4 w-4" />
                                             <span>{job.period}</span>
                                         </div>
@@ -117,7 +110,7 @@ const ProfessionalExperiencePage = () => {
                                     <ul className="space-y-2 mb-4">
                                         {job.description.map((item: string, i: number) => (
                                             <li key={i} className="flex items-start gap-2 text-gray-300">
-                                                <ChevronRight className="h-4 w-4 text-primary mt-1" />
+                                                <span className="text-primary mt-1.5">•</span>
                                                 <span>{item}</span>
                                             </li>
                                         ))}
@@ -125,7 +118,7 @@ const ProfessionalExperiencePage = () => {
 
                                     <div className="flex flex-wrap gap-2 mt-4">
                                         {job.technologies.map((tech: string, i: number) => (
-                                            <Badge key={i} variant="secondary" className="tech-badge bg-background/60 hover:bg-primary/20 transition-colors duration-200">
+                                            <Badge key={i} variant="secondary" className="tech-badge bg-background/60">
                                                 {tech}
                                             </Badge>
                                         ))}
@@ -150,8 +143,8 @@ const ProfessionalExperiencePage = () => {
                         Key Projects
                     </motion.h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {detailedProjects.map((project: DetailedProject) => (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {allProjects.map((project: Project) => (
                             <motion.div
                                 key={project.id}
                                 variants={itemVariants}
@@ -174,38 +167,47 @@ const ProfessionalExperiencePage = () => {
                                     </div>
                                 </div>
 
-                                <p className="text-gray-400 mb-4">{project.description}</p>
+                                <div className="p-4">
+                                    <p className="text-gray-300 mb-4">{project.description}</p>
 
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.technologies.map((tech: string, i: number) => (
-                                        <Badge key={i} variant="outline" className="text-xs">
-                                            {tech}
-                                        </Badge>
-                                    ))}
-                                </div>
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        {project.technologies.map((tech: string, i: number) => (
+                                            <Badge key={i} variant="outline" className="tech-badge text-xs">
+                                                {tech}
+                                            </Badge>
+                                        ))}
+                                    </div>
 
-                                <div className="flex flex-wrap gap-3">
-                                    {project.links.live && (
-                                        <Button variant="outline" size="sm" asChild>
+                                    <div className="flex flex-wrap gap-3">
+                                        {project.links.live && (
                                             <Link href={project.links.live} target="_blank" rel="noopener noreferrer">
-                                                <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                                                <Button variant="outline" size="sm" className="text-xs">
+                                                    Live Demo <ExternalLink className="ml-1 h-3 w-3" />
+                                                </Button>
                                             </Link>
-                                        </Button>
-                                    )}
-                                    {project.links.chrome && (
-                                        <Button variant="outline" size="sm" asChild>
+                                        )}
+                                        {project.links.chrome && (
                                             <Link href={project.links.chrome} target="_blank" rel="noopener noreferrer">
-                                                <ExternalLink className="mr-2 h-4 w-4" /> Chrome Extension
+                                                <Button variant="outline" size="sm" className="text-xs">
+                                                    Chrome Extension <ExternalLink className="ml-1 h-3 w-3" />
+                                                </Button>
                                             </Link>
-                                        </Button>
-                                    )}
-                                    {project.links.playStore && (
-                                        <Button variant="outline" size="sm" asChild>
+                                        )}
+                                        {project.links.playStore && (
                                             <Link href={project.links.playStore} target="_blank" rel="noopener noreferrer">
-                                                <ExternalLink className="mr-2 h-4 w-4" /> Google Play
+                                                <Button variant="outline" size="sm" className="text-xs">
+                                                    Google Play <ExternalLink className="ml-1 h-3 w-3" />
+                                                </Button>
                                             </Link>
-                                        </Button>
-                                    )}
+                                        )}
+                                        {project.links.github && (
+                                            <Link href={project.links.github} target="_blank" rel="noopener noreferrer">
+                                                <Button variant="outline" size="sm" className="text-xs">
+                                                    GitHub <ExternalLink className="ml-1 h-3 w-3" />
+                                                </Button>
+                                            </Link>
+                                        )}
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}
@@ -214,32 +216,20 @@ const ProfessionalExperiencePage = () => {
 
                 {/* Call to action */}
                 <motion.div
-                    variants={itemVariants}
-                    className="text-center"
+                    className="text-center mt-16"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8, duration: 0.5 }}
                 >
-                    <div className="glass-panel rounded-lg p-8 border border-neutral-800">
-                        <h3 className="text-2xl font-bold mb-2">Interested in working together?</h3>
-                        <p className="text-gray-400 mb-6">Check out my full portfolio or reach out directly.</p>
-                        <div className="flex flex-wrap justify-center gap-4">
-                            <Button asChild>
-                                <Link href="/projects">
-                                    View All Projects
-                                </Link>
-                            </Button>
-                            <Button variant="outline" asChild>
-                                <Link href="/contact">
-                                    Contact Me
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
+                    <p className="text-gray-400 mb-4">Want to know more about my professional background?</p>
+                    <Link href="/resume">
+                        <Button variant="default" size="lg" className="bg-primary hover:bg-primary/80">
+                            View My Full Resume
+                        </Button>
+                    </Link>
                 </motion.div>
-            </div >
-
-            {/* Tech pattern floating decorations */}
-            <div className="fixed top-1/4 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl z-0" ></div >
-            <div className="fixed bottom-1/4 left-10 w-80 h-80 bg-secondary/5 rounded-full blur-3xl z-0"></div>
-        </div >
+            </div>
+        </div>
     );
 };
 

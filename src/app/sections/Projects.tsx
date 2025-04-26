@@ -6,9 +6,12 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { featuredProjects } from '@/constants';
+import { allProjects } from '@/constants';
+import { Project } from '@/types';
 
 const Projects: React.FC = () => {
+    const featuredProjects = allProjects.filter(project => project.isFeatured);
+
     return (
         <section id="projects" className="py-16">
             <div className="container mx-auto">
@@ -22,9 +25,9 @@ const Projects: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {featuredProjects.map((project, index) => (
+                    {featuredProjects.map((project: Project, index: number) => (
                         <motion.div
-                            key={index}
+                            key={project.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -36,9 +39,9 @@ const Projects: React.FC = () => {
                                 <p className="text-muted-foreground mb-4 text-sm flex-grow">{project.description}</p>
                                 <div className="space-y-4">
                                     <div className="flex flex-wrap gap-2">
-                                        {project.tags.map((tag) => (
-                                            <Badge key={tag} variant="outline" className="text-xs">
-                                                {tag}
+                                        {project.technologies.map((tech) => (
+                                            <Badge key={tech} variant="outline" className="text-xs">
+                                                {tech}
                                             </Badge>
                                         ))}
                                     </div>

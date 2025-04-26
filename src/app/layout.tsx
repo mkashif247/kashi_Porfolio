@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Kashif - Full-Stack JavaScript Developer",
+  title: "kaKashif - Full-Stack JavaScript Developer",
   description: "Personal portfolio showcasing scalable web and mobile applications focused on performance and user experience.",
 };
 

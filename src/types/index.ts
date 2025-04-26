@@ -1,27 +1,7 @@
 // Project Types
 export interface Project {
-  title: string;
-  description: string;
-  tags: string[];
-  liveUrl?: string;
-  chromeUrl?: string;
-  playStoreUrl?: string;
-  imagePath?: string;
-}
-
-// Experience Types
-export interface Experience {
-  title: string;
-  company: string;
-  location: string;
-  period: string;
-  description: string[];
-  technologies: string[];
-}
-
-// Detailed Project Type (used in professional-experience page)
-export interface DetailedProject {
   id: number;
+  slug: string;
   title: string;
   description: string;
   technologies: string[];
@@ -32,6 +12,17 @@ export interface DetailedProject {
     playStore?: string;
     github?: string;
   };
+  isFeatured?: boolean;
+}
+
+// Experience Types
+export interface Experience {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  description: string[];
+  technologies: string[];
 }
 
 // Skills Types
