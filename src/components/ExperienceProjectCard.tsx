@@ -25,7 +25,7 @@ const ExperienceProjectCard: React.FC<ExperienceProjectCardProps> = ({ project, 
             {/* Enhanced Card */}
             <div className="glass-panel rounded-xl overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-xl group-hover:shadow-primary/20 group-hover:-translate-y-1 group-hover:border group-hover:border-primary/30">
                 {/* Image Container */}
-                <div className="h-64 relative overflow-hidden">
+                <div className="h-48 sm:h-56 md:h-64 relative overflow-hidden">
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10 opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
                     {project.image && (
@@ -39,21 +39,21 @@ const ExperienceProjectCard: React.FC<ExperienceProjectCardProps> = ({ project, 
                         </div>
                     )}
                     {/* Title on Image */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 z-20">
                         <AnimateOnScroll animation="fade-in" delay={50} threshold={0.05}>
-                            <h3 className="text-2xl font-bold text-white tracking-tight">{project.title}</h3>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight line-clamp-2">{project.title}</h3>
                         </AnimateOnScroll>
                     </div>
                 </div>
 
                 {/* Content Area */}
-                <div className="p-6 space-y-4">
+                <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
                     <AnimateOnScroll animation="fade-in" delay={100} threshold={0.05}>
-                        <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
+                        <p className="text-gray-300 text-sm sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">{project.description}</p>
                     </AnimateOnScroll>
 
                     {/* Technologies */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {project.technologies.map((tech: string, i: number) => (
                             <AnimateOnScroll key={i} animation="fade-in" delay={150 + i * 30} threshold={0.05}>
                                 <Badge variant="secondary" className="tech-badge bg-background/70 backdrop-blur-sm text-xs font-medium">
@@ -64,7 +64,7 @@ const ExperienceProjectCard: React.FC<ExperienceProjectCardProps> = ({ project, 
                     </div>
 
                     {/* Links/Buttons */}
-                    <div className="flex flex-wrap gap-3 pt-2">
+                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-2">
                         {Object.entries(project.links).map(([key, url], i) => {
                             if (!url) return null;
                             let text = key; // Default text

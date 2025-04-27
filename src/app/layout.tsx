@@ -19,6 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "kaKashif - Full-Stack JavaScript Developer",
   description: "Personal portfolio showcasing scalable web and mobile applications focused on performance and user experience.",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
 };
 
 export default function RootLayout({
@@ -42,7 +43,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex flex-col min-h-[calc(100vh-64px)]">
+          <main className="flex flex-col min-h-[calc(100vh-64px)] w-full overflow-x-hidden">
             {children}
           </main>
           <Footer />
