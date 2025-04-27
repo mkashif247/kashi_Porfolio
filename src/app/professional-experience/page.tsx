@@ -1,9 +1,8 @@
 "use client";
 
 import React from 'react';
-// import Image from 'next/image'; // Removed unused import
+import Image from 'next/image';
 import Link from 'next/link';
-// import { ExternalLink } from 'lucide-react'; // Removed unused import
 import { Calendar, MapPin, Briefcase } from 'lucide-react'; // Kept used icons
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,6 +22,19 @@ const ProfessionalExperiencePage = () => {
             <div className="tech-bubble"></div>
             <div className="tech-bubble"></div>
 
+            {/* Kakashi floating decoration */}
+            <div className="fixed bottom-10 right-10 z-10 opacity-80 hidden lg:block">
+                <div className="relative w-64 h-64">
+                    <Image
+                        src="/naruto_kashi.png"
+                        alt="Naruto and Kashif"
+                        fill
+                        className="object-contain animate-float"
+                        style={{ animationDuration: '6s' }}
+                    />
+                </div>
+            </div>
+
             {/* Animated background */}
             <div className="fixed inset-0 z-0">
                 <div className="absolute inset-0 bg-grid-pattern opacity-5" />
@@ -38,7 +50,7 @@ const ProfessionalExperiencePage = () => {
                         </h1>
                         <AnimateOnScroll animation="fade-in" delay={200}>
                             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                                My career journey building web and mobile applications, with a focus on scalable solutions and performance optimization.
+                                A look at my journey building web and mobile applications, focusing on scalable solutions, performance, and workflow automation.
                             </p>
                         </AnimateOnScroll>
                     </div>

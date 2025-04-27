@@ -5,9 +5,10 @@ export type SkillCategory =
   | "frontend"
   | "backend"
   | "database"
-  | "devops"
+  // | "devops" // Commented out DevOps
   | "tools"
-  | "mobile";
+  | "mobile"
+  | "automation";
 
 // Skills data
 export const skillsData: Record<SkillCategory, Skill[]> = {
@@ -33,11 +34,11 @@ export const skillsData: Record<SkillCategory, Skill[]> = {
     { name: "Prisma ORM", level: 4 },
     { name: "Sequelize ORM", level: 4 },
   ],
-  devops: [
+  /* devops: [ // Commented out DevOps section
     { name: "Git/GitHub", level: 4 },
     { name: "Docker", level: 3 },
     { name: "CI/CD", level: 3 },
-  ],
+  ], */
   tools: [
     { name: "VS Code", level: 5 },
     { name: "Figma", level: 3 },
@@ -48,6 +49,11 @@ export const skillsData: Record<SkillCategory, Skill[]> = {
     { name: "React Native", level: 4 },
     { name: "Expo", level: 3 },
   ],
+  automation: [
+    { name: "n8n", level: 4 },
+    { name: "Workflow Automation", level: 4 },
+    { name: "AI Agents", level: 3 },
+  ],
 };
 
 // Simplified skills for homepage
@@ -57,7 +63,7 @@ export const topSkills: Skill[] = [
   { name: "TypeScript", category: "frontend" },
   { name: "Nest.js", category: "backend" },
   { name: "Node.js", category: "backend" },
-  { name: "PostgreSQL", category: "database" },
-  { name: "Tailwind CSS", category: "frontend" },
+  { name: "n8n", category: "automation" },
+  { name: "Workflow Automation", category: "automation" },
   { name: "React Native", category: "mobile" },
 ];

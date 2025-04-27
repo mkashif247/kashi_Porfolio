@@ -12,9 +12,30 @@ const Skills: React.FC = () => {
         'Backend': 'backend',
         'Database': 'database',
         'Mobile': 'mobile',
-        'DevOps': 'devops',
+        // 'DevOps': 'devops', // Commented out DevOps
+        'Automation': 'automation',
         'Tools': 'tools'
     };
+
+    // Define the order of categories for display
+    const categoryOrder: SkillCategory[] = [
+        'frontend',
+        'backend',
+        'database',
+        'mobile',
+        'automation',
+        // 'devops', // Commented out DevOps
+        'tools',
+    ];
+
+    // Create an ordered list of [displayName, categoryKey] pairs
+    const orderedCategories = categoryOrder
+        .map(key => {
+            const displayName = Object.keys(categories).find(name => categories[name] === key);
+            // Ensure the category exists in skillsData before adding
+            return displayName && skillsData[key] ? [displayName, key] : null;
+        })
+        .filter(Boolean) as [string, SkillCategory][];
 
     return (
         <section id="skills" className="container py-12 md:py-24">
@@ -24,7 +45,7 @@ const Skills: React.FC = () => {
                         Technical Skills
                     </h2>
                     <div className="w-full space-y-4">
-                        {Object.entries(categories).map(([displayName, categoryKey], index) => (
+                        {orderedCategories.map(([displayName, categoryKey], index) => (
                             <AnimateOnScroll
                                 key={categoryKey}
                                 animation="fade-up"

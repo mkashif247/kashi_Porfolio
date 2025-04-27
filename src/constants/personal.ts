@@ -1,10 +1,10 @@
 // Personal information used across the site
 export const personalInfo = {
   name: "Muhammad Kashif",
-  title: "Full-Stack JavaScript Developer",
-  subtitle: "// SCALABLE WEB & MOBILE APPLICATIONS.",
+  title: "Full-Stack Ninja 🥷 Developer using Javascript",
+  subtitle: "// BUILDING WEB & MOBILE APPS | AUTOMATION",
   description:
-    "Full-stack JavaScript developer with expertise in Next.js, React.js, Nest.js, and React Native. Focused on building high-performance applications with clean architectures and seamless user experiences that drive business growth.",
+    "Full-stack developer creating web and mobile applications with Next.js, React, Nest.js, and React Native. Also experienced in workflow automation (n8n) and AI agents. Focused on building user-friendly, high-performance apps.",
   location: "Lahore, Pakistan",
   email: "contact@kashif.dev", // Replace with actual email if needed
   heroImage: "/hero.png",
@@ -19,4 +19,4 @@ export const personalInfo = {
 
 // About me text
 export const aboutText =
-  "I am a Full-Stack JavaScript Developer with almost 2 years of experience building scalable web and mobile applications using Next.js, React.js, Nest.js, and React Native. My expertise spans developing responsive UIs, RESTful APIs, and integrating third-party services like Stripe and Firebase. I'm passionate about optimizing performance and creating user-centric solutions that drive business growth. As a Computer Science graduate from COMSATS University, I combine technical knowledge with practical skills to deliver high-quality applications.";
+  "Hi, I'm a Full-Stack Developer with about 2 years of experience building websites and mobile apps using tools like Next.js, React, Nest.js, and React Native. I also work with workflow automation (using n8n) and developing AI agents. I enjoy creating easy-to-use interfaces, setting up reliable backends, and ensuring things run smoothly.Love ❤️ turning ideas into useful software.";

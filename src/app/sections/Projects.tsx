@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
                             Featured Projects
                         </h2>
                         <p className="text-muted-foreground max-w-[700px]">
-                            Some of my recent work building web and mobile applications
+                            Highlights of my work in app development and automation.
                         </p>
                     </div>
                 </AnimateOnScroll>
