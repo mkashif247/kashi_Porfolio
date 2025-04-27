@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
             </div>
 
             <div className="container relative z-10 mx-auto px-4 flex flex-col justify-center h-full">
-                <div className="max-w-3xl">
+                <div className="max-w-3xl py-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
                         <h1 className="text-[5rem] sm:text-[6rem] md:text-[8rem] font-extrabold leading-none tracking-tighter text-white">
                             FULL-STACK
                             <br />
-                            <span className="text-neutral-600">DEVELOPER</span>
+                            <span className="text-neutral-600">Ninja 🥷 </span>
                         </h1>
                     </motion.div>
 
